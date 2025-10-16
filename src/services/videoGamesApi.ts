@@ -1,4 +1,4 @@
-import type { VideoGame, VideoGamesResponse, ApiState } from '../types/api.types';
+import type { VideoGame, VideoGamesResponse } from '../types/api.types';
 
 /**
  * VIDEO GAMES API SERVICE
@@ -42,8 +42,7 @@ import type { VideoGame, VideoGamesResponse, ApiState } from '../types/api.types
  * - Modal o expansión para ver detalles completos
  */
 
-const API_BASE_URL = 'https://api.rawg.io/api';
-const API_KEY = 'YOUR_API_KEY_HERE'; // Reemplazar con tu API key de RAWG
+
 
 /**
  * Obtiene una lista de videojuegos
@@ -53,12 +52,7 @@ const API_KEY = 'YOUR_API_KEY_HERE'; // Reemplazar con tu API key de RAWG
  * @param ordering - Ordenamiento (opcional: -rating, -released, etc.)
  * @returns Promise con la respuesta de juegos
  */
-export const fetchVideoGames = async (
-  page: number = 1,
-  pageSize: number = 20,
-  search?: string,
-  ordering?: string
-): Promise<VideoGamesResponse> => {
+export const fetchVideoGames = async (): Promise<VideoGamesResponse> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -93,7 +87,7 @@ export const fetchVideoGames = async (
  * @param id - ID del juego
  * @returns Promise con los detalles del juego
  */
-export const fetchGameDetails = async (id: number): Promise<VideoGame | null> => {
+export const fetchGameDetails = async (): Promise<VideoGame | null> => {
   // TODO: Implementar la llamada a la API
   /*
   const response = await fetch(`${API_BASE_URL}/games/${id}?key=${API_KEY}`);
@@ -114,7 +108,7 @@ export const fetchGameDetails = async (id: number): Promise<VideoGame | null> =>
  * @param query - Término de búsqueda
  * @returns Promise con los resultados de búsqueda
  */
-export const searchVideoGames = async (query: string): Promise<VideoGame[]> => {
+export const searchVideoGames = async (): Promise<VideoGame[]> => {
   // TODO: Implementar la llamada a la API
   /*
   const response = await fetchVideoGames(1, 10, query);

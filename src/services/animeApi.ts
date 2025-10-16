@@ -1,4 +1,4 @@
-import type { AnimeItem, AnimeResponse, ApiState } from '../types/api.types';
+import type { AnimeItem, AnimeResponse } from '../types/api.types';
 
 /**
  * ANIME API SERVICE
@@ -54,7 +54,7 @@ import type { AnimeItem, AnimeResponse, ApiState } from '../types/api.types';
  * - Indicador de episodios y año
  */
 
-const API_BASE_URL = 'https://api.jikan.moe/v4';
+
 
 /**
  * Obtiene el top anime
@@ -63,11 +63,7 @@ const API_BASE_URL = 'https://api.jikan.moe/v4';
  * @param filter - Filtro (airing, upcoming, bypopularity, favorite)
  * @returns Promise con la respuesta de anime
  */
-export const fetchTopAnime = async (
-  page: number = 1,
-  limit: number = 20,
-  filter?: string
-): Promise<AnimeResponse> => {
+export const fetchTopAnime = async (): Promise<AnimeResponse> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -106,11 +102,7 @@ export const fetchTopAnime = async (
  * @param limit - Cantidad de resultados (default: 20)
  * @returns Promise con los resultados de búsqueda
  */
-export const searchAnime = async (
-  query: string,
-  page: number = 1,
-  limit: number = 20
-): Promise<AnimeResponse> => {
+export const searchAnime = async (): Promise<AnimeResponse> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -147,7 +139,7 @@ export const searchAnime = async (
  * @param id - ID del anime en MyAnimeList
  * @returns Promise con los detalles del anime
  */
-export const fetchAnimeDetails = async (id: number): Promise<AnimeItem | null> => {
+export const fetchAnimeDetails = async (): Promise<AnimeItem | null> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -170,10 +162,7 @@ export const fetchAnimeDetails = async (id: number): Promise<AnimeItem | null> =
  * @param season - Temporada (winter, spring, summer, fall)
  * @returns Promise con anime de la temporada
  */
-export const fetchSeasonalAnime = async (
-  year: number,
-  season: 'winter' | 'spring' | 'summer' | 'fall'
-): Promise<AnimeResponse> => {
+export const fetchSeasonalAnime = async (): Promise<AnimeResponse> => {
   // TODO: Implementar la llamada a la API
   /*
   const response = await fetch(`${API_BASE_URL}/seasons/${year}/${season}`);

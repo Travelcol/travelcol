@@ -1,4 +1,4 @@
-import type { FootballMatch, FootballLeague, ApiState } from '../types/api.types';
+import type { FootballMatch, FootballLeague } from '../types/api.types';
 
 /**
  * FOOTBALL API SERVICE
@@ -34,8 +34,7 @@ import type { FootballMatch, FootballLeague, ApiState } from '../types/api.types
  * - Filtros por fecha, liga, equipo
  */
 
-const API_BASE_URL = 'https://v3.football.api-sports.io';
-const API_KEY = 'YOUR_API_KEY_HERE'; // Reemplazar con tu API key
+
 
 /**
  * Obtiene los partidos de fútbol
@@ -43,10 +42,7 @@ const API_KEY = 'YOUR_API_KEY_HERE'; // Reemplazar con tu API key
  * @param date - Fecha en formato YYYY-MM-DD (opcional)
  * @returns Promise con los partidos
  */
-export const fetchFootballMatches = async (
-  league?: number,
-  date?: string
-): Promise<FootballMatch[]> => {
+export const fetchFootballMatches = async (): Promise<FootballMatch[]> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -97,9 +93,7 @@ export const fetchFootballMatches = async (
  * @param country - Nombre del país (opcional)
  * @returns Promise con las ligas
  */
-export const fetchFootballLeagues = async (
-  country?: string
-): Promise<FootballLeague[]> => {
+export const fetchFootballLeagues = async (): Promise<FootballLeague[]> => {
   // TODO: Implementar la llamada a la API
   return [];
 };

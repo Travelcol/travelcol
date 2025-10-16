@@ -1,4 +1,4 @@
-import type { BibleVerse, BibleBook, ApiState } from '../types/api.types';
+import type { BibleVerse, BibleBook } from '../types/api.types';
 
 /**
  * BIBLE API SERVICE
@@ -38,7 +38,7 @@ import type { BibleVerse, BibleBook, ApiState } from '../types/api.types';
  * - Lista de versículos favoritos o recientes
  */
 
-const API_BASE_URL = 'https://bible-api.com';
+
 
 /**
  * Obtiene un versículo o pasaje de la Biblia
@@ -46,10 +46,7 @@ const API_BASE_URL = 'https://bible-api.com';
  * @param translation - Traducción (opcional: kjv, web, etc.)
  * @returns Promise con el versículo
  */
-export const fetchBibleVerse = async (
-  reference: string,
-  translation?: string
-): Promise<BibleVerse> => {
+export const fetchBibleVerse = async (): Promise<BibleVerse> => {
   // TODO: Implementar la llamada a la API
   // Ejemplo de implementación:
   /*
@@ -120,7 +117,7 @@ export const fetchVerseOfTheDay = async (): Promise<BibleVerse> => {
  * @param query - Término de búsqueda
  * @returns Promise con versículos encontrados
  */
-export const searchBibleVerses = async (query: string): Promise<BibleVerse[]> => {
+export const searchBibleVerses = async (): Promise<BibleVerse[]> => {
   // TODO: Implementar búsqueda
   // Requiere usar API.Bible u otra API con funcionalidad de búsqueda
   /*

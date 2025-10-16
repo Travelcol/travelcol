@@ -40,9 +40,10 @@ function App() {
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) =>
     setActiveTab(newValue);
 
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  };
+const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+};
+
 
   return (
     <Box
