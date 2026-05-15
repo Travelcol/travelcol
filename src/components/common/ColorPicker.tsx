@@ -2,18 +2,22 @@ import { cn } from '@/utils/cn'
 import { Check } from 'lucide-react'
 
 const COLORS = [
-  '#6366f1',
-  '#8b5cf6',
-  '#ec4899',
+  '#7f1d1d',
+  '#991b1b',
+  '#b91c1c',
+  '#dc2626',
   '#ef4444',
+  '#f87171',
+  '#c2410c',
+  '#ea580c',
   '#f97316',
-  '#eab308',
-  '#22c55e',
-  '#06b6d4',
-  '#3b82f6',
-  '#64748b',
-  '#a855f7',
-  '#14b8a6',
+  '#fb923c',
+  '#92400e',
+  '#b45309',
+  '#d97706',
+  '#f59e0b',
+  '#fbbf24',
+  '#fde047',
 ]
 
 interface ColorPickerProps {

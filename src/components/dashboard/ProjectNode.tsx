@@ -28,7 +28,7 @@ export const ProjectNode = memo(({ data }: NodeProps<ProjectNodeType>) => {
         <div className="flex items-center gap-2 mb-1.5">
           <div
             className="h-6 w-6 rounded flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-            style={{ backgroundColor: project.color ?? '#6366f1' }}
+            style={{ backgroundColor: project.color ?? '#ef4444' }}
           >
             {project.title[0]?.toUpperCase()}
           </div>

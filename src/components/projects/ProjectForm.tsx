@@ -40,7 +40,7 @@ export function ProjectForm({ project, onSubmit, onCancel, selectedTagIds, onTag
       description: project?.description ?? '',
       link: project?.link ?? '',
       status: project?.status ?? 'active',
-      color: project?.color ?? '#6366f1',
+      color: project?.color ?? '#ef4444',
       notes: project?.notes ?? '',
     },
   })

@@ -27,7 +27,7 @@ export function ProjectDetailModal({ project, tags, onClose, onEdit }: Props) {
       <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: project.color ?? '#6366f1' }}>
+            <div className="h-7 w-7 rounded flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: project.color ?? '#ef4444' }}>
               {project.title[0]?.toUpperCase()}
             </div>
             {project.title}

@@ -49,7 +49,7 @@ export function ProjectCard({ project, tags, onEdit, onDelete, onToggleFavorite,
           <div className="flex items-center gap-2 min-w-0">
             <div
               className="h-7 w-7 rounded-md flex items-center justify-center flex-shrink-0 text-white text-xs font-bold"
-              style={{ backgroundColor: project.color ?? '#6366f1' }}
+              style={{ backgroundColor: project.color ?? '#ef4444' }}
             >
               {project.title[0]?.toUpperCase()}
             </div>

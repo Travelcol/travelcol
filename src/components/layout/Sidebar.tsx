@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/utils/cn'
+import { ThemeToggle } from '@/components/common/ThemeToggle'
 
 const NAV_ITEMS = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -62,7 +63,10 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom */}
-      <div className="border-t border-border p-2">
+      <div className="border-t border-border p-2 space-y-0.5">
+        <div className="flex items-center gap-2.5 h-9 px-3">
+          <ThemeToggle variant="full" className="w-full" />
+        </div>
         <button
           onClick={handleLogout}
           className="flex items-center gap-2.5 h-9 w-full px-3 rounded-md text-sm text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"

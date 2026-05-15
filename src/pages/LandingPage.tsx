@@ -6,6 +6,7 @@ import {
   ChevronDown, CheckCircle2, ExternalLink, ArrowUpRight,
   Terminal, Menu, X,
 } from 'lucide-react'
+import { ThemeToggle } from '@/components/common/ThemeToggle'
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -141,13 +142,16 @@ export function LandingPage() {
             ))}
           </nav>
 
-          <button
-            onClick={() => navigate('/login')}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-full transition-all"
-          >
-            <Terminal className="w-3 h-3" />
-            Dashboard
-          </button>
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => navigate('/login')}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-full transition-all"
+            >
+              <Terminal className="w-3 h-3" />
+              Dashboard
+            </button>
+          </div>
 
           {/* Mobile hamburger */}
           <button
@@ -171,13 +175,16 @@ export function LandingPage() {
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => navigate('/login')}
-              className="inline-flex items-center gap-1.5 text-sm text-primary"
-            >
-              <Terminal className="w-3.5 h-3.5" />
-              Dashboard
-            </button>
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => navigate('/login')}
+                className="inline-flex items-center gap-1.5 text-sm text-primary"
+              >
+                <Terminal className="w-3.5 h-3.5" />
+                Dashboard
+              </button>
+              <ThemeToggle variant="full" />
+            </div>
           </div>
         )}
       </header>
@@ -185,11 +192,11 @@ export function LandingPage() {
       {/* ── Hero ───────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Ambient blobs */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-violet-500/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-red-900/10 pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/25 rounded-full blur-[100px] animate-pulse" />
           <div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] animate-pulse"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-900/15 rounded-full blur-[120px] animate-pulse"
             style={{ animationDelay: '1s' }}
           />
         </div>
@@ -203,9 +210,9 @@ export function LandingPage() {
           {/* Avatar */}
           <div className="mb-8 flex justify-center">
             <div className="relative">
-              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-primary to-violet-400 p-[3px]">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-primary to-red-800 p-[3px]">
                 <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                  <span className="text-3xl font-bold bg-gradient-to-br from-primary to-violet-400 bg-clip-text text-transparent">
+                  <span className="text-3xl font-bold bg-gradient-to-br from-primary to-red-800 bg-clip-text text-transparent">
                     {cvData.name.split(' ').map((n) => n[0]).join('')}
                   </span>
                 </div>
@@ -465,7 +472,7 @@ export function LandingPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="relative overflow-hidden text-center p-10 bg-card rounded-2xl border border-border">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-violet-500/5 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-red-900/5 pointer-events-none" />
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center mx-auto mb-6">
                   <Mail className="w-5 h-5 text-primary" />

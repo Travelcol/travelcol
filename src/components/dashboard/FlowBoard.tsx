@@ -15,6 +15,7 @@ import {
 import '@xyflow/react/dist/style.css'
 import { toast } from 'sonner'
 import { useDataStore } from '@/store/dataStore'
+import { useUIStore } from '@/store/uiStore'
 import { ProjectNode } from './ProjectNode'
 import { ServiceNode } from './ServiceNode'
 import type { ProjectNodeType } from './ProjectNode'
@@ -26,6 +27,9 @@ const nodeTypes = { project: ProjectNode, service: ServiceNode }
 const EMPTY: never[] = []
 
 export function FlowBoard() {
+  const theme = useUIStore(s => s.theme)
+  const isDark = theme === 'dark'
+
   const projects = useDataStore(s => s.projects)
   const services = useDataStore(s => s.services)
   const relations = useDataStore(s => s.relations)
@@ -66,7 +70,7 @@ export function FlowBoard() {
       id: `rel-${r.id}`,
       source: `project-${r.projectId}`,
       target: `service-${r.serviceId}`,
-      style: { stroke: 'hsl(263 70% 60% / 0.5)', strokeWidth: 2 },
+      style: { stroke: 'hsl(0 84% 57% / 0.5)', strokeWidth: 2 },
       animated: false,
     })),
     [relations],
@@ -117,7 +121,7 @@ export function FlowBoard() {
           id: `rel-${id}`,
           source: connection.source!,
           target: connection.target!,
-          style: { stroke: 'hsl(263 70% 60% / 0.5)', strokeWidth: 2 },
+          style: { stroke: 'hsl(0 84% 57% / 0.5)', strokeWidth: 2 },
         }])
       } catch { toast.error('Error al crear relación') }
     },
@@ -132,19 +136,19 @@ export function FlowBoard() {
         onNodeDragStop={handleNodeDragStop} onConnect={onConnect}
         nodeTypes={nodeTypes} fitView fitViewOptions={{ padding: 0.2 }}
         minZoom={0.3} maxZoom={2} deleteKeyCode="Delete"
-        colorMode="dark" proOptions={{ hideAttribution: true }}
+        colorMode={isDark ? 'dark' : 'light'} proOptions={{ hideAttribution: true }}
       >
-        <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="hsl(240 5% 15%)" />
+        <Background variant={BackgroundVariant.Dots} gap={24} size={1} color={isDark ? 'hsl(0 5% 12%)' : 'hsl(0 10% 88%)'} />
         <Controls showInteractive={false} />
         <MiniMap
           nodeColor={node => {
             if (node.type === 'project') {
               const data = node.data as { project: { color?: string } }
-              return data.project.color ?? '#6366f1'
+              return data.project.color ?? '#ef4444'
             }
             return '#334155'
           }}
-          maskColor="hsl(240 10% 3.9% / 0.8)"
+          maskColor={isDark ? 'hsl(0 0% 4% / 0.8)' : 'hsl(0 0% 98% / 0.8)'}
         />
       </ReactFlow>
     </div>

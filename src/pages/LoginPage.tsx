@@ -99,6 +99,15 @@ export function LoginPage() {
               {isSubmitting ? 'Ingresando...' : 'Iniciar sesión'}
             </Button>
           </form>
+          
+          <div className="flex justify-center pt-2">
+            <button
+              onClick={() => navigate('/')}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ← Volver al inicio
+            </button>
+          </div>
         </div>
       </motion.div>
     </AuthLayout>

@@ -30,7 +30,7 @@ type FormData = z.infer<typeof schema>
 function TagForm({ tag, onSubmit, onCancel }: { tag?: Tag; onSubmit: (d: FormData) => Promise<void>; onCancel: () => void }) {
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { name: tag?.name ?? '', color: tag?.color ?? '#6366f1' },
+    defaultValues: { name: tag?.name ?? '', color: tag?.color ?? '#ef4444' },
   })
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

@@ -55,8 +55,8 @@ export function StatsCards() {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-      <StatCard icon={FolderKanban} label="Proyectos" value={projects.length} sub={`${activeProjects} activos`} color="#6366f1" />
-      <StatCard icon={Server} label="Servicios" value={services.length} sub="Externos" color="#8b5cf6" />
+      <StatCard icon={FolderKanban} label="Proyectos" value={projects.length} sub={`${activeProjects} activos`} color="#ef4444" />
+      <StatCard icon={Server} label="Servicios" value={services.length} sub="Externos" color="#dc2626" />
       <StatCard icon={Tags} label="Tags" value={tags.length} sub="Categorías" color="#06b6d4" />
       <StatCard icon={GitBranch} label="Relaciones" value={relations.length} sub="Conexiones" color="#22c55e" />
       <StatCard icon={Star} label="Favoritos" value={favoriteProjects} sub="Proyectos" color="#eab308" />

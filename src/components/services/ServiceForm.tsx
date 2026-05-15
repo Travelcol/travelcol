@@ -40,7 +40,7 @@ export function ServiceForm({ service, onSubmit, onCancel, selectedTagIds, onTag
       provider: service?.provider ?? 'Vercel',
       link: service?.link ?? '',
       description: service?.description ?? '',
-      color: service?.color ?? '#6366f1',
+      color: service?.color ?? '#ef4444',
     },
   })
 

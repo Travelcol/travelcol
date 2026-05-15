@@ -5,14 +5,16 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { AppRoutes } from '@/routes'
 import { ErrorBoundary } from '@/components/common/ErrorBoundary'
 import { useAuthStore } from '@/store/authStore'
+import { useUIStore } from '@/store/uiStore'
 
 export default function App() {
   const initAuth = useAuthStore(s => s.init)
+  const initTheme = useUIStore(s => s.initTheme)
 
   useEffect(() => {
-    document.documentElement.classList.add('dark')
+    initTheme()
     initAuth()
-  }, [initAuth])
+  }, [initTheme, initAuth])
 
   return (
     <ErrorBoundary label="App">
@@ -23,9 +25,9 @@ export default function App() {
             position="bottom-right"
             toastOptions={{
               style: {
-                background: 'hsl(240 10% 7%)',
-                border: '1px solid hsl(240 5% 13%)',
-                color: 'hsl(0 0% 98%)',
+                background: 'hsl(var(--card))',
+                border: '1px solid hsl(var(--border))',
+                color: 'hsl(var(--foreground))',
               },
             }}
             richColors
