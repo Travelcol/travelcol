@@ -89,7 +89,7 @@ export function TagsPage() {
     <AppLayout>
       <Header title="Tags" actions={<Button size="sm" onClick={openCreate}><Plus className="h-4 w-4" /> Nuevo tag</Button>} />
 
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 overflow-auto p-4 sm:p-6">
         {tags.length === 0 ? (
           <EmptyState icon={Tags} title="No hay tags" description="Crea tags para organizar tus proyectos y servicios." action={<Button size="sm" onClick={openCreate}><Plus className="h-4 w-4" /> Crear tag</Button>} />
         ) : (

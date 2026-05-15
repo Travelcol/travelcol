@@ -20,9 +20,12 @@ function loadTheme(): 'dark' | 'light' {
 
 interface UIState {
   sidebarCollapsed: boolean
+  mobileSidebarOpen: boolean
   theme: 'dark' | 'light'
   toggleSidebar: () => void
   setSidebarCollapsed: (v: boolean) => void
+  openMobileSidebar: () => void
+  closeMobileSidebar: () => void
   setTheme: (t: 'dark' | 'light') => void
   toggleTheme: () => void
   initTheme: () => void
@@ -30,10 +33,13 @@ interface UIState {
 
 export const useUIStore = create<UIState>((set, get) => ({
   sidebarCollapsed: false,
+  mobileSidebarOpen: false,
   theme: 'dark',
 
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   setSidebarCollapsed: (v) => set({ sidebarCollapsed: v }),
+  openMobileSidebar: () => set({ mobileSidebarOpen: true }),
+  closeMobileSidebar: () => set({ mobileSidebarOpen: false }),
 
   setTheme: (t) => {
     applyTheme(t)

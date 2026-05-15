@@ -98,7 +98,7 @@ export function SettingsPage() {
     <AppLayout>
       <Header title="Configuración" />
 
-      <div className="flex-1 overflow-auto p-6 max-w-2xl">
+      <div className="flex-1 overflow-auto p-4 sm:p-6 max-w-2xl w-full">
         <div className="space-y-6">
 
           {/* DB Stats */}
@@ -109,7 +109,7 @@ export function SettingsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
                 {[
                   { label: 'Proyectos', value: projects.length },
                   { label: 'Servicios', value: services.length },

@@ -21,12 +21,12 @@ export function DashboardPage() {
 
       <div className="flex-1 overflow-hidden flex flex-col">
         {/* Stats */}
-        <div className="px-6 pt-4 pb-3 flex-shrink-0">
+        <div className="px-4 sm:px-6 pt-4 pb-3 flex-shrink-0">
           <StatsCards />
         </div>
 
         {/* Flow Board */}
-        <div className="flex-1 min-h-0 mx-6 mb-4 rounded-lg border border-border overflow-hidden">
+        <div className="flex-1 min-h-0 mx-4 sm:mx-6 mb-4 rounded-lg border border-border overflow-hidden">
           <ErrorBoundary label="FlowBoard">
             <ReactFlowProvider>
               <FlowBoard />
