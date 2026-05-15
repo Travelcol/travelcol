@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add *)",
+      "Bash(npx vite *)",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react/dist/cjs/lucide-react.js'\\); const keys = Object.keys\\(l\\).filter\\(k => /train|github|git/i.test\\(k\\)\\); console.log\\(keys.join\\('\\\\n'\\)\\)\")",
+      "Bash(pnpm dev *)",
+      "Bash(Start-Sleep -Seconds 3)",
+      "Bash(Get-Content \"C:\\\\Users\\\\TRAVEL~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-TravelCOL-Documents-Projects-Manager\\\\13e39769-c1a2-4caa-bc1b-22c97a72d9e8\\\\tasks\\\\bs22kx0is.output\")",
+      "Bash(npx tsc *)",
+      "Bash(pnpm build *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":5173 \\\\|:5174 \")",
+      "Bash(findstr LISTENING)",
+      "Bash(taskkill /PID 22696 /F)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\TravelCOL\\\\Documents\\\\Projects\\\\Manager\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\TravelCOL\\\\Documents\\\\Projects\\\\Manager\" -Name \"README*\" -ErrorAction SilentlyContinue)",
+      "Bash(Test-Path \"C:\\\\Users\\\\TravelCOL\\\\Documents\\\\Projects\\\\Manager\\\\README.md\")",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react/dist/cjs/lucide-react.js'\\); const keys = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('git'\\) || k.toLowerCase\\(\\).includes\\('link'\\)\\); console.log\\(keys.join\\('\\\\n'\\)\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\TravelCOL\\.claude\\projects\\c--Users-TravelCOL-Documents-Projects-Manager\\memory"
+    ]
+  }
+}
