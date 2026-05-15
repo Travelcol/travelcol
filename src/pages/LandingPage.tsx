@@ -338,7 +338,7 @@ export function LandingPage() {
                 className="relative"
               >
                 {/* Dot */}
-                <div className="absolute -left-[2.35rem] top-5 w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                <div className="absolute -left-10 top-[2.125rem] -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background" />
 
                 <div className="p-6 bg-card rounded-xl border border-border hover:border-primary/40 transition-colors group">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-1 gap-1">
