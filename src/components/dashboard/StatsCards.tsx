@@ -1,22 +1,9 @@
 import { FolderKanban, Server, Tags, GitBranch, Star, Activity } from 'lucide-react'
-import { useLiveQuery } from 'dexie-react-hooks'
-import { db } from '@/database/db'
+import { useDataStore } from '@/store/dataStore'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
-function StatCard({
-  icon: Icon,
-  label,
-  value,
-  sub,
-  color,
-}: {
-  icon: typeof FolderKanban
-  label: string
-  value: number | string
-  sub?: string
-  color: string
-}) {
+function StatCard({ icon: Icon, label, value, sub, color }: { icon: typeof FolderKanban; label: string; value: number | string; sub?: string; color: string }) {
   return (
     <Card>
       <CardContent className="p-4">
@@ -48,27 +35,23 @@ function StatSkeleton() {
 }
 
 export function StatsCards() {
-  const projects = useLiveQuery(() => db.projects.toArray())
-  const services = useLiveQuery(() => db.services.toArray())
-  const tags = useLiveQuery(() => db.tags.toArray())
-  const relations = useLiveQuery(() => db.relations.toArray())
+  const projects = useDataStore(s => s.projects)
+  const services = useDataStore(s => s.services)
+  const tags = useDataStore(s => s.tags)
+  const relations = useDataStore(s => s.relations)
+  const initialized = useDataStore(s => s.initialized)
 
-  if (!projects || !services || !tags || !relations) {
+  if (!initialized) {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <StatSkeleton key={i} />
-        ))}
+        {Array.from({ length: 6 }).map((_, i) => <StatSkeleton key={i} />)}
       </div>
     )
   }
 
-  const activeProjects = projects.filter((p) => p.status === 'active').length
-  const favoriteProjects = projects.filter((p) => p.isFavorite).length
-  const recentActivity = relations.filter((r) => {
-    const diff = Date.now() - new Date(r.createdAt).getTime()
-    return diff < 7 * 24 * 60 * 60 * 1000
-  }).length
+  const activeProjects = projects.filter(p => p.status === 'active').length
+  const favoriteProjects = projects.filter(p => p.isFavorite).length
+  const recentActivity = relations.filter(r => Date.now() - new Date(r.createdAt).getTime() < 7 * 24 * 60 * 60 * 1000).length
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">

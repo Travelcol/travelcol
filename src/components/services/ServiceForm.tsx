@@ -1,8 +1,7 @@
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useLiveQuery } from 'dexie-react-hooks'
-import { db } from '@/database/db'
+import { useDataStore } from '@/store/dataStore'
 import type { Service } from '@/types'
 import { PROVIDERS } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -32,14 +31,9 @@ interface ServiceFormProps {
 }
 
 export function ServiceForm({ service, onSubmit, onCancel, selectedTagIds, onTagsChange }: ServiceFormProps) {
-  const tags = useLiveQuery(() => db.tags.toArray()) ?? []
+  const tags = useDataStore(s => s.tags)
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       name: service?.name ?? '',
@@ -51,23 +45,11 @@ export function ServiceForm({ service, onSubmit, onCancel, selectedTagIds, onTag
   })
 
   async function onValid(data: FormData) {
-    await onSubmit({
-      name: data.name,
-      provider: data.provider,
-      link: data.link,
-      description: data.description,
-      color: data.color,
-      tags: selectedTagIds,
-      isFavorite: service?.isFavorite ?? false,
-    })
+    await onSubmit({ name: data.name, provider: data.provider, link: data.link, description: data.description, color: data.color, tags: selectedTagIds, isFavorite: service?.isFavorite ?? false })
   }
 
   function toggleTag(tagId: number) {
-    if (selectedTagIds.includes(tagId)) {
-      onTagsChange(selectedTagIds.filter((id) => id !== tagId))
-    } else {
-      onTagsChange([...selectedTagIds, tagId])
-    }
+    onTagsChange(selectedTagIds.includes(tagId) ? selectedTagIds.filter(id => id !== tagId) : [...selectedTagIds, tagId])
   }
 
   return (
@@ -77,75 +59,45 @@ export function ServiceForm({ service, onSubmit, onCancel, selectedTagIds, onTag
         <Input id="name" {...register('name')} placeholder="Ej: Vercel Production" autoFocus />
         {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
       </div>
-
       <div className="space-y-1.5">
         <Label>Proveedor *</Label>
-        <Controller
-          name="provider"
-          control={control}
-          render={({ field }) => (
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {PROVIDERS.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {p}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
-        />
+        <Controller name="provider" control={control} render={({ field }) => (
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              {PROVIDERS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        )} />
         {errors.provider && <p className="text-xs text-destructive">{errors.provider.message}</p>}
       </div>
-
       <div className="space-y-1.5">
         <Label htmlFor="link">Link</Label>
         <Input id="link" {...register('link')} placeholder="https://..." />
       </div>
-
       <div className="space-y-1.5">
         <Label htmlFor="description">Descripción</Label>
         <Textarea id="description" {...register('description')} placeholder="Descripción breve..." rows={2} />
       </div>
-
       <div className="space-y-1.5">
         <Label>Color</Label>
-        <Controller
-          name="color"
-          control={control}
-          render={({ field }) => <ColorPicker value={field.value} onChange={field.onChange} />}
-        />
+        <Controller name="color" control={control} render={({ field }) => <ColorPicker value={field.value} onChange={field.onChange} />} />
       </div>
-
       {tags.length > 0 && (
         <div className="space-y-1.5">
           <Label>Tags</Label>
           <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <button
-                key={tag.id}
-                type="button"
-                onClick={() => toggleTag(tag.id!)}
-                className="transition-opacity"
-                style={{ opacity: selectedTagIds.includes(tag.id!) ? 1 : 0.4 }}
-              >
+            {tags.map(tag => (
+              <button key={tag.id} type="button" onClick={() => toggleTag(tag.id!)} className="transition-opacity" style={{ opacity: selectedTagIds.includes(tag.id!) ? 1 : 0.4 }}>
                 <TagBadge tag={tag} />
               </button>
             ))}
           </div>
         </div>
       )}
-
       <div className="flex justify-end gap-2 pt-2">
-        <Button type="button" variant="outline" onClick={onCancel}>
-          Cancelar
-        </Button>
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Guardando...' : service ? 'Actualizar' : 'Crear'}
-        </Button>
+        <Button type="button" variant="outline" onClick={onCancel}>Cancelar</Button>
+        <Button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Guardando...' : service ? 'Actualizar' : 'Crear'}</Button>
       </div>
     </form>
   )

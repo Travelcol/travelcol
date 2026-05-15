@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 export function Header({ title, actions }: HeaderProps) {
-  const username = useAuthStore((s) => s.username)
+  const username = useAuthStore((s) => s.email)
 
   return (
     <header className="flex h-14 items-center justify-between border-b border-border px-6 bg-background/50 backdrop-blur-sm flex-shrink-0">

@@ -6,8 +6,6 @@ import { z } from 'zod'
 import { motion } from 'framer-motion'
 import { Boxes, Eye, EyeOff } from 'lucide-react'
 import { toast } from 'sonner'
-import { db } from '@/database/db'
-import { verifyPassword } from '@/utils/crypto'
 import { useAuthStore } from '@/store/authStore'
 import { AuthLayout } from '@/layouts/AuthLayout'
 import { Button } from '@/components/ui/button'
@@ -15,7 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const schema = z.object({
-  username: z.string().min(1, 'Usuario requerido'),
+  email: z.string().email('Email inválido'),
   password: z.string().min(1, 'Contraseña requerida'),
 })
 
@@ -23,7 +21,7 @@ type FormData = z.infer<typeof schema>
 
 export function LoginPage() {
   const navigate = useNavigate()
-  const login = useAuthStore((s) => s.login)
+  const login = useAuthStore(s => s.login)
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -34,23 +32,11 @@ export function LoginPage() {
 
   async function onSubmit(data: FormData) {
     try {
-      const user = await db.users.where('username').equals(data.username).first()
-      if (!user) {
-        toast.error('Usuario no encontrado')
-        return
-      }
-
-      const valid = await verifyPassword(data.password, user.passwordHash, user.salt)
-      if (!valid) {
-        toast.error('Contraseña incorrecta')
-        return
-      }
-
-      login(data.username)
+      await login(data.email, data.password)
       navigate('/dashboard')
     } catch (err) {
-      console.error(err)
-      toast.error('Error al iniciar sesión')
+      console.error('[Login error]', err)
+      toast.error('Credenciales incorrectas')
     }
   }
 
@@ -62,7 +48,6 @@ export function LoginPage() {
         transition={{ duration: 0.3 }}
         className="space-y-6"
       >
-        {/* Logo */}
         <div className="flex flex-col items-center gap-3 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20 ring-1 ring-primary/30">
             <Boxes className="h-6 w-6 text-primary" />
@@ -73,19 +58,19 @@ export function LoginPage() {
           </div>
         </div>
 
-        {/* Form */}
         <div className="rounded-xl border border-border bg-card p-6 shadow-lg">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1.5">
-              <Label htmlFor="username">Usuario</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="username"
-                {...register('username')}
-                placeholder="admin"
-                autoComplete="username"
+                id="email"
+                {...register('email')}
+                type="email"
+                placeholder="tu@email.com"
+                autoComplete="email"
                 autoFocus
               />
-              {errors.username && <p className="text-xs text-destructive">{errors.username.message}</p>}
+              {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
             </div>
 
             <div className="space-y-1.5">
@@ -115,7 +100,6 @@ export function LoginPage() {
             </Button>
           </form>
         </div>
-
       </motion.div>
     </AuthLayout>
   )

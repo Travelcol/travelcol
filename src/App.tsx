@@ -4,30 +4,34 @@ import { Toaster } from 'sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { AppRoutes } from '@/routes'
 import { ErrorBoundary } from '@/components/common/ErrorBoundary'
+import { useAuthStore } from '@/store/authStore'
 
 export default function App() {
+  const initAuth = useAuthStore(s => s.init)
+
   useEffect(() => {
     document.documentElement.classList.add('dark')
-  }, [])
+    initAuth()
+  }, [initAuth])
 
   return (
     <ErrorBoundary label="App">
-    <BrowserRouter>
-      <TooltipProvider delayDuration={300}>
-        <AppRoutes />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: 'hsl(240 10% 7%)',
-              border: '1px solid hsl(240 5% 13%)',
-              color: 'hsl(0 0% 98%)',
-            },
-          }}
-          richColors
-        />
-      </TooltipProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <TooltipProvider delayDuration={300}>
+          <AppRoutes />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: 'hsl(240 10% 7%)',
+                border: '1px solid hsl(240 5% 13%)',
+                color: 'hsl(0 0% 98%)',
+              },
+            }}
+            richColors
+          />
+        </TooltipProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   )
 }
