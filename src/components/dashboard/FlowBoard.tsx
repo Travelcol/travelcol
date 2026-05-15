@@ -10,7 +10,7 @@ import {
   type Connection,
   type EdgeChange,
   type Edge,
-  type NodeDragHandler,
+  type OnNodeDrag,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -92,7 +92,7 @@ export function FlowBoard() {
   }, [computedEdges])
 
   // Save position only when the user explicitly finishes dragging a node.
-  const handleNodeDragStop: NodeDragHandler = useCallback((_event, node) => {
+  const handleNodeDragStop: OnNodeDrag<FlowNode> = useCallback((_event, node) => {
     const [type, idStr] = node.id.split('-') as ['project' | 'service', string]
     const entityId = parseInt(idStr)
     if (!isNaN(entityId)) {

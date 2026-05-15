@@ -116,9 +116,6 @@ export function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground">
-          Credenciales por defecto: <span className="font-mono text-foreground">admin / admin123</span>
-        </p>
       </motion.div>
     </AuthLayout>
   )

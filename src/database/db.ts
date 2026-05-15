@@ -9,6 +9,7 @@ import type {
   NodePosition,
   AppSettings,
 } from '../types'
+import { hashPassword, generateSalt } from '../utils/crypto'
 
 class AppDatabase extends Dexie {
   users!: Table<User>
@@ -31,6 +32,12 @@ class AppDatabase extends Dexie {
       activityLogs: '++id, timestamp, type',
       nodePositions: '++id, [entityType+entityId]',
       settings: '++id',
+    })
+
+    this.on('populate', async () => {
+      const salt = generateSalt()
+      const passwordHash = await hashPassword('Colombo14*', salt)
+      await this.users.add({ username: 'admin', passwordHash, salt, createdAt: new Date().toISOString() })
     })
   }
 }
