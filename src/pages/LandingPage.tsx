@@ -29,8 +29,8 @@ const cvData = {
   role: 'Ingeniero de Software',
   location: 'Colombia',
   email: 'juansearevalo00@gmail.com',
-  github: 'https://github.com/juansearevalo',
-  linkedin: 'https://linkedin.com/in/juansearevalo',
+  github: 'https://github.com/Travelcol',
+  linkedin: 'https://www.linkedin.com/in/juan-sebastian-arevalo-mancera-4a2605224/',
   about:
     'Ingeniero de Software con experiencia en desarrollo de aplicaciones web y soluciones financieras. Persona organizada y responsable con buenas habilidades de trabajo en equipo. Apasionado por el desarrollo de software y siempre buscando aprender y aportar soluciones de calidad.',
   stats: [

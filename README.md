@@ -19,5 +19,5 @@ En el frontend trabajo principalmente con React, Next.js, TypeScript, Tailwind C
 ## Contacto
 
 - Correo: juansearevalo00@gmail.com
-- GitHub: https://github.com/juansearevalo
-- LinkedIn: https://linkedin.com/in/juansearevalo
+- GitHub: https://github.com/Travelcol
+- LinkedIn: https://www.linkedin.com/in/juan-sebastian-arevalo-mancera-4a2605224/
